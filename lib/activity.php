@@ -51,11 +51,12 @@ function activity_view_page () {
 	$sidebar = elgg_view('core/river/sidebar');
 	
 	$sidebar .= elgg_view('activity/module/mentions');
+	$sidebar_alt = elgg_view('activity/module/weekly_likes');
 	
 	$params = array(
 		'content' =>  $content . $activity,
 		'sidebar' => $sidebar,
-		'sidebar_alt' => '',
+		'sidebar_alt' => $sidebar_alt,
 		'filter_context' => $page_filter,
 		'class' => 'elgg-river-layout',
 	);
