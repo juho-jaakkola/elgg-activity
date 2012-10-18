@@ -49,8 +49,9 @@ function activity_view_page () {
 	$content = elgg_view('core/river/filter', array('selector' => $selector));
 	
 	$sidebar = elgg_view('core/river/sidebar');
-	
 	$sidebar .= elgg_view('activity/module/mentions');
+	$sidebar .= elgg_view('activity/module/comments');
+	
 	$sidebar_alt = elgg_view('activity/module/weekly_likes');
 	
 	$params = array(
