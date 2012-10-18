@@ -36,8 +36,6 @@ if ($mentions) {
 		'list_class' => 'elgg-latest-mentions',
 		'full_view' => false,
 	));
-} else {
-	$mentions_list = '<p>' . elgg_echo('generic_comment:none') . '</p>';
-}
 	
-echo elgg_view_module('sidebar', elgg_echo('activity:module:mentions:title'), $mentions_list);
+	echo elgg_view_module('sidebar', elgg_echo('activity:module:mentions:title'), $mentions_list);
+}
