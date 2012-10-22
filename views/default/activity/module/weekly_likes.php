@@ -5,16 +5,26 @@
 
 $week_ago = time() - (60 * 60 * 24 * 7);
 
-$likes = elgg_get_entities_from_annotations(array(
+// Get less than week old entities ordered by amount of likes
+$likes = elgg_get_entities_from_annotation_calculation(array(
 	'annotation_names' => 'likes',
-	'order_by_annotation' => 'likes',
-	'full_view' => false,
-	'pagination' => false,
+	'calculation' => 'count', 
 	'wheres' => array("n_table.time_created > $week_ago"),
 ));
 
 // We must use a customized list view since there is no standard for list items in widget context
 if ($likes) {
+	$entities = array();
+	foreach ($likes as $entity) {
+		$entities[$entity->getGUID()] = $entity->countAnnotations('likes');
+	}
+	sort($entities);
+	$ordered_likes = array();
+	foreach ($entities as $guid => $likes_count) {
+		$ordered_likes[] = $likes[$guid];
+	}
+	$likes = $ordered_likes;
+	
 	$html .= '<ul class="elgg-list">';
 	foreach ($likes as $entity) {
 		if (elgg_instanceof($entity)) {
