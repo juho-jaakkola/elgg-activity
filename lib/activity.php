@@ -53,7 +53,7 @@ function activity_view_page () {
 	$sidebar .= elgg_view('activity/module/comments');
 	
 	$sidebar_alt = elgg_view('activity/module/weekly_likes');
-	$sidebar_alt .= elgg_view('page/elements/tagcloud_block');
+	$sidebar_alt .= elgg_view('page/elements/tagcloud_block', array('limit' => 30));
 	
 	$params = array(
 		'content' =>  $content . $activity,
