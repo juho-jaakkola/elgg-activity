@@ -6,7 +6,7 @@
 function activity_view_page () {
 	
 	$options = array();
-	
+
 	$page_type = preg_replace('[\W]', '', get_input('page_type', 'all'));
 	$type = preg_replace('[\W]', '', get_input('type', 'all'));
 	$subtype = preg_replace('[\W]', '', get_input('subtype', ''));
@@ -41,11 +41,13 @@ function activity_view_page () {
 			break;
 	}
 	
+	$add_blog = elgg_view('activity/blog');
+
 	$activity = elgg_list_river($options);
 	if (!$activity) {
 		$activity = elgg_echo('river:none');
 	}
-	
+
 	$content = elgg_view('core/river/filter', array('selector' => $selector));
 	
 	$sidebar = elgg_view('core/river/sidebar');
@@ -56,7 +58,7 @@ function activity_view_page () {
 	$sidebar_alt .= elgg_view('page/elements/tagcloud_block', array('limit' => 30));
 	
 	$params = array(
-		'content' =>  $content . $activity,
+		'content' =>  $add_blog . $content . $activity,
 		'sidebar' => $sidebar,
 		'sidebar_alt' => $sidebar_alt,
 		'filter_context' => $page_filter,

@@ -8,6 +8,9 @@
 function activity_init () {
 	elgg_register_library('elgg:activity', elgg_get_plugins_path() . 'activity/lib/activity.php');
 	
+	$actionspath = elgg_get_plugins_path() . 'activity/actions/activity';
+	elgg_register_action('activity/blog/save', "$actionspath/blog/save.php");
+	
 	// Replace the default page handler
 	elgg_unregister_page_handler('activity');
 	elgg_register_page_handler('activity', 'activity_page_handler');
@@ -30,13 +33,6 @@ function activity_page_handler ($page) {
 
 	echo activity_view_page();
 	return true;
-}
-
-/**
- * 
- */
-function activity_usersettings_handler ($hook, $type, $return, $params) {
-
 }
 
 elgg_register_event_handler('init', 'system', 'activity_init');
