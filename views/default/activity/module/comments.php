@@ -12,6 +12,7 @@ $options = array(
 	'limit' => elgg_extract('limit', $vars, 4),
 	'type' => 'object',
 	'subtypes' => elgg_extract('subtypes', $vars, ELGG_ENTITIES_ANY_VALUE),
+    'wheres' => array("n_table.owner_guid != $owner_guid")
 );
 
 $title = elgg_echo('activity:latest_comments');
