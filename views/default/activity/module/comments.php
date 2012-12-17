@@ -14,7 +14,7 @@ $options = array(
 	'subtypes' => elgg_extract('subtypes', $vars, ELGG_ENTITIES_ANY_VALUE),
 );
 
-$title = elgg_echo('generic_comments:latest');
+$title = elgg_echo('activity:latest_comments');
 $comments = elgg_get_annotations($options);
 if ($comments) {
 	$body = elgg_view('page/components/list', array(
@@ -23,6 +23,6 @@ if ($comments) {
 		'list_class' => 'elgg-latest-comments',
 		'full_view' => false,
 	));
-	
+
 	echo elgg_view_module('aside', $title, $body);
 }
