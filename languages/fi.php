@@ -9,6 +9,7 @@ $lang = array(
 
 	// Automatically generated strings not found from core
 	'groupforumtopic:groupforumtopic' => 'Keskustelu',
+	'page_top:page_top' => 'Sivu',
 );
 
 add_translation('fi', $lang);
