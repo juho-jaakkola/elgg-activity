@@ -10,6 +10,7 @@ $lang = array(
 	// Automatically generated strings not found from core
 	'groupforumtopic:groupforumtopic' => 'Keskustelu',
 	'page_top:page_top' => 'Sivu',
+	'bookmarks:bookmarks' => 'Kirjanmerkki',
 );
 
 add_translation('fi', $lang);
