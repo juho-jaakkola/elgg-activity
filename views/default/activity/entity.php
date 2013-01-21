@@ -11,7 +11,14 @@ $user_link = "<a href=\"{$user->getURL()}\">$user->name</a>";
 
 $entity_title = $entity->title ? $entity->title : elgg_echo('untitled');
 $entity_link = "<a href=\"{$entity->getURL()}\">$entity_title</a>";
-$entity_type = elgg_echo("{$entity->getSubtype()}:{$entity->getSubtype()}");
+
+$type_string = "{$entity->getSubtype()}:{$entity->getSubtype()}";
+$entity_type = elgg_echo($type_string);
+
+// If translation for subtype:subtype is not found use item:object:subtype
+if ($entity_type == $type_string) {
+	$entity_type = elgg_echo("item:object:{$entity->getSubtype()}");
+}
 
 $by = elgg_echo('byline', array($user_link));
 
