@@ -37,5 +37,5 @@ if ($mentions) {
 		'full_view' => false,
 	));
 	
-	echo elgg_view_module('sidebar', elgg_echo('activity:module:mentions:title'), $mentions_list);
+	echo elgg_view_module('aside', elgg_echo('activity:module:mentions:title'), $mentions_list);
 }
