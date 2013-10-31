@@ -5,38 +5,40 @@
 
 $week_ago = time() - (60 * 60 * 24 * 7);
 
-// Get less than week old entities ordered by amount of likes
-$likes = elgg_get_entities_from_annotation_calculation(array(
+// Get entities that have been liked within a week
+$liked_entities = elgg_get_entities_from_annotation_calculation(array(
 	'annotation_names' => 'likes',
-	'calculation' => 'count', 
+	'calculation' => 'count',
 	'wheres' => array("n_table.time_created > $week_ago"),
 ));
 
-// We must use a customized list view since there is no standard for list items in widget context
-if ($likes) {
+if ($liked_entities) {
+	// Order the entities by like count
+	$guids_to_entities = array();
+	$guids_to_like_count = array();
+	foreach ($liked_entities as $entity) {
+		$guids_to_entities[$entity->guid] = $entity;
+		$guids_to_like_count[$entity->guid] = $entity->countAnnotations('likes');
+	}
+	arsort($guids_to_like_count);
+
 	$entities = array();
-	foreach ($likes as $entity) {
-		$entities[$entity->getGUID()] = $entity->countAnnotations('likes');
+	foreach ($guids_to_like_count as $guid => $like_count) {
+		$entities[] = $guids_to_entities[$guid];
 	}
-	sort($entities);
-	$ordered_likes = array();
-	foreach ($entities as $guid => $likes_count) {
-		$ordered_likes[] = $likes[$guid];
-	}
-	$likes = $ordered_likes;
-	
+
+	// We must use a customized list view since there is no standard for list items in widget context
 	$html .= '<ul class="elgg-list">';
-	foreach ($likes as $entity) {
-		if (elgg_instanceof($entity)) {
-			$id = "elgg-{$entity->getType()}-{$entity->getGUID()}";
-		} else {
-			$id = "item-{$entity->getType()}-{$entity->id}";
-		}
+	foreach ($entities as $entity) {
+		$id = "elgg-{$entity->getType()}-{$entity->getGUID()}";
 		$html .= "<li id=\"$id\" class=\"elgg-item\">";
 		$html .= elgg_view('activity/entity', array('entity' => $entity));
 		$html .= '</li>';
 	}
 	$html .= '</ul>';
-
-	echo elgg_view_module('aside', elgg_echo('activity:module:weekly_likes'), $html);
+} else {
+	$text = elgg_echo('activity:module:weekly_likes:none');
+	$html = "<p>$text</p>";
 }
+
+echo elgg_view_module('aside', elgg_echo('activity:module:weekly_likes'), $html);
