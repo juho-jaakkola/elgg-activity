@@ -1,6 +1,6 @@
 <?php
 
-$lang = array(
+return array(
 	'activity:' => '',
 	'activity:module:mentions:title' => 'Uusimmat maininnat',
 	'activity:module:weekly_likes' => 'Viikon tykätyimmät',
@@ -12,6 +12,5 @@ $lang = array(
 	'groupforumtopic:groupforumtopic' => 'Keskustelu',
 	'page_top:page_top' => 'Sivu',
 	'bookmarks:bookmarks' => 'Kirjanmerkki',
+	'comment:comment' => 'Kommentti',
 );
-
-add_translation('fi', $lang);
