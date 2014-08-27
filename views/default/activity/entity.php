@@ -9,8 +9,16 @@ if (!$entity || !$user) {
 $user_icon = elgg_view_entity_icon($user, 'tiny');
 $user_link = "<a href=\"{$user->getURL()}\">$user->name</a>";
 
-$entity_title = $entity->title ? $entity->title : elgg_echo('untitled');
-$entity_link = "<a href=\"{$entity->getURL()}\">$entity_title</a>";
+$title = $entity->getDisplayName();
+if (!$title) {
+	if ($entity->description) {
+		$title = elgg_get_excerpt($entity->description, 30);
+	} else {
+		$title = elgg_echo('untitled');
+	}
+}
+
+$entity_link = "<a href=\"{$entity->getURL()}\">$title</a>";
 
 $type_string = "{$entity->getSubtype()}:{$entity->getSubtype()}";
 $entity_type = elgg_echo($type_string);
