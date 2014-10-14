@@ -28,14 +28,13 @@ if ($liked_entities) {
 	}
 
 	// We must use a customized list view since there is no standard for list items in widget context
-	$html .= '<ul class="elgg-list">';
+	$items = '';
 	foreach ($entities as $entity) {
 		$id = "elgg-{$entity->getType()}-{$entity->getGUID()}";
-		$html .= "<li id=\"$id\" class=\"elgg-item\">";
-		$html .= elgg_view('activity/entity', array('entity' => $entity));
-		$html .= '</li>';
+		$item = elgg_view('activity/entity', array('entity' => $entity));
+		$items .= "<li id=\"$id\" class=\"elgg-item\">$item</li>";
 	}
-	$html .= '</ul>';
+	$html = "<ul class=\"elgg-list\">$items</ul>";
 } else {
 	$text = elgg_echo('activity:module:weekly_likes:none');
 	$html = "<p>$text</p>";
