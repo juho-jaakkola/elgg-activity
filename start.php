@@ -1,25 +1,29 @@
 <?php
 /**
  * Activity
- * 
+ *
  * @package Activity
  */
 
 function activity_init () {
 	elgg_register_library('elgg:activity', elgg_get_plugins_path() . 'activity/lib/activity.php');
-	
-	$actionspath = elgg_get_plugins_path() . 'activity/actions/activity';
-	elgg_register_action('activity/blog/save', "$actionspath/blog/save.php");
-	
+
 	// Replace the default page handler
 	elgg_unregister_page_handler('activity');
 	elgg_register_page_handler('activity', 'activity_page_handler');
+
+	// The creation forms are routed through this view
+	elgg_register_ajax_view('forms/activity/create');
+
+	elgg_extend_view('css/elgg', 'css/activity');
 }
 
 function activity_page_handler ($page) {
 	global $CONFIG;
 
 	elgg_load_library('elgg:activity');
+
+	elgg_require_js('elgg/activity/create');
 
 	elgg_set_page_owner_guid(elgg_get_logged_in_user_guid());
 
