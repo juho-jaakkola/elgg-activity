@@ -41,7 +41,10 @@ function activity_view_page () {
 			break;
 	}
 
-	$create_content = elgg_view('activity/create');
+	$create_content = '';
+	if (elgg_is_logged_in()) {
+		$create_content = elgg_view('activity/create');
+	}
 
 	$activity = elgg_list_river($options);
 	if (!$activity) {
