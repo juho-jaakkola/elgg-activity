@@ -1,8 +1,9 @@
 <?php
+/**
+ * Prepare and display a form for adding new blog/file/bookmark
+ */
 
 $type = get_input('type');
-
-$form_vars = call_user_func("{$type}_prepare_form_vars");
 
 switch ($type) {
 	case 'blog':
@@ -14,6 +15,16 @@ switch ($type) {
 	case 'bookmarks':
 		$form_path = 'bookmarks/save';
 		break;
+}
+
+$form_vars = array();
+
+// Load the libraries that prepare the form vars
+elgg_load_library("elgg:{$type}");
+
+$preparing_function = "{$type}_prepare_form_vars";
+if (function_exists($preparing_function)) {
+	$form_vars = call_user_func($preparing_function);
 }
 
 echo elgg_view_form($form_path, array(), $form_vars);
