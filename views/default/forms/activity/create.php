@@ -15,6 +15,9 @@ switch ($type) {
 	case 'bookmarks':
 		$form_path = 'bookmarks/save';
 		break;
+	case 'video':
+		$form_path = 'video/upload';
+		break;
 }
 
 $form_vars = array();

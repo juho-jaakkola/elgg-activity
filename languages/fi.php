@@ -16,4 +16,5 @@ return array(
 	'activity:add:blog' => 'Viesti',
 	'activity:add:bookmarks' => 'Linkki',
 	'activity:add:file' => 'Tiedosto',
+	'activity:add:video' => 'Video',
 );

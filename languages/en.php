@@ -16,4 +16,5 @@ return array(
 	'activity:add:blog' => 'Message',
 	'activity:add:bookmarks' => 'Link',
 	'activity:add:file' => 'File',
+	'activity:add:video' => 'Video',
 );

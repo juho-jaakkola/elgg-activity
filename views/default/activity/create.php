@@ -13,6 +13,9 @@ $plugins = array(
 	'file' => array(
 		'icon' => 'clip',
 	),
+	'video' => array(
+		'icon' => 'video',
+	),
 );
 
 $tabs = array();
