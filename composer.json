@@ -1,0 +1,20 @@
+{
+	"name": "juho-jaakkola/elgg-activity",
+	"description": "Extends the features of the default activity page.",
+	"type": "elgg-plugin",
+	"keywords": [
+		"elgg",
+		"plugin"
+	],
+	"license": "GPL-2.0",
+	"authors": [
+		{
+			"name": "Juho Jaakkola",
+			"email": "juho.a.jaakkola@gmail.com",
+			"role": "Developer"
+		}
+	],
+	"extra": {
+		"installer-name": "activity"
+	}
+}
