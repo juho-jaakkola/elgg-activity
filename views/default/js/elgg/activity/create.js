@@ -27,6 +27,8 @@ define(function(require) {
 				$('#elgg-activity-create-form .elgg-form').submit(function(e) {
 					e.preventDefault();
 
+					// The FormData API provides very easy file uploads.
+					// (Required e.g. by the File and Video plugins.)
 					var formData = new FormData($(this)[0]);
 
 					// For some reason FormData does not pick the content added
