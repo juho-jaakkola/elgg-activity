@@ -29,6 +29,11 @@ define(function(require) {
 
 					var formData = new FormData($(this)[0]);
 
+					// For some reason FormData does not pick the content added
+					// through a wysiwyg editor, so we need to add it manually
+					var desc = $(this).find('textarea[name=description]').val();
+					formData.append('description', desc);
+
 					elgg.post($(this).attr('action'), {
 						data: formData,
 						dataType: 'json',
