@@ -48,8 +48,8 @@ define(function(require) {
 					elgg.post($(this).attr('action'), {
 						data: formData,
 						dataType: 'json',
-        				contentType: false,
-        				processData: false,
+						contentType: false,
+						processData: false,
 						success: function (json) {
 							if (json && json.system_messages) {
 								elgg.register_error(json.system_messages.error);
