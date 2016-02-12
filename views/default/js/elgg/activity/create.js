@@ -36,6 +36,15 @@ define(function(require) {
 					var desc = $(this).find('textarea[name=description]').val();
 					formData.append('description', desc);
 
+					// Firefox doesn't include submit button to the data, so
+					// this makes sure it is always included. The button is
+					// used by the blog plugin to tell apart automatic saving
+					// of draft and the actual submit.
+					var submit = $(this).find('input[type=submit]');
+					if (submit.attr('name') !== undefined) {
+						formData.append(submit.attr('name'), submit.attr('value'));
+					}
+
 					elgg.post($(this).attr('action'), {
 						data: formData,
 						dataType: 'json',
